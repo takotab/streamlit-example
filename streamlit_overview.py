@@ -22,7 +22,7 @@ if __name__ == "__main__":
         st.warning("Please select a whole hour. Time is now adjusted")
     timestamp = dt.datetime.combine(date, time)
     st.write("selected", timestamp, "to ", timestamp + dt.timedelta(hours=1))
-    temp = 273 + st.slider(
+    temp = st.slider(
         f"Please select the expacted temperature at {location} at {time.strftime('%H:%M')}?",
         -20.0,
         40.0,
@@ -67,7 +67,11 @@ if __name__ == "__main__":
     if name in read_out:
         result = read_out[name]
     else:
-        result = int((np.random.rand() * (usage_var_dct[usage_var]) + 0.85) * usage)
+        result = int(
+            (np.random.rand() * (usage_var_dct[usage_var]) + 0.85)
+            * (1.1 - (temp - 10) * 0.03)
+            * usage
+        )
         read_out[name] = result
     st.write(f"Expacted usage = {result} kWh")
     # if not os.path.exists("data"):
