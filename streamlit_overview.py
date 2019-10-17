@@ -67,7 +67,7 @@ if __name__ == "__main__":
     if name in read_out:
         result = read_out[name]
     else:
-        result = int(np.random.rand() * (usage_var_dct[usage_var]) + 0.85)
+        result = int((np.random.rand() * (usage_var_dct[usage_var]) + 0.85) * usage)
         read_out[name] = result
     st.write(f"Expacted usage = {result} kWh")
     # if not os.path.exists("data"):
